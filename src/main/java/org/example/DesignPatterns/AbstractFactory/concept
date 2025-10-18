@@ -1,0 +1,4 @@
+
+-- It defines an interface for creating a series of related
+objects, allowing the client to separate itself from the creation
+process.
