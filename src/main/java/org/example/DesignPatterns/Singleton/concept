@@ -1,0 +1,17 @@
+
+
+-- president
+
+-- one instance throughout application and provides a global access point.
+
+benefits
+1.Resource saving
+2.Global Access
+3.Control Instance Number
+
+
+Warning
+1.Introducing Global State
+2.Tight Coupling
+
+anti - pattern

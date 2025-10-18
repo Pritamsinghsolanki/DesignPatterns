@@ -1,0 +1,26 @@
+
+
+- State pattern is a behavioural pattern that implements a state machine
+in an object-oriented way.With that state pattern, each state is implemented as
+a derived class of a state interface ,and state transitions are handled by involving methods
+defined by interfaces.
+
+- variant of strategy pattern
+
+Example - Automatic Coffee machine
+          Idle -> selecting -> dispensing
+
+          interface -> concrete classes -> state class -> main class calling state class
+
+when to use:
+
+If an object behavior depends on its state and needs to change dynamically at runtime based on
+state transitions, then consider.
+
+--Automatic coffe machine, vending machines, order management
+
+Summary:
+
+The state design pattern separates state and behaviour , allowing objects to dynamically adjust
+their behaviour based on their state.This pattern improves system flexibility and maintainability
+enabling easy managment and extesnsion of an object statelogic

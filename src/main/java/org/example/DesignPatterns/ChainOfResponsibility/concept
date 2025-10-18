@@ -1,0 +1,16 @@
+
+-- example -> Leave approval process
+
+-- The chain of responsibility pattern helps us to build a chain of objects. A request enters from
+   one end of achin and is passed along until it finds a suitable handler.
+
+-- It decouples the sender and receiver of a request by connecting multiple handlers in a chain.
+
+-- example -> bank account
+
+WHen to use
+- when multiple objects that can handle a request but the specific object that handles it is determined
+  at runtime.
+
+-- It distributes the responsibility of handling a request among multiple objects, avoiding
+   coupling between the sender and receiver.

@@ -1,0 +1,26 @@
+
+-- The strategy pattern allows to obtain a set of algos
+and encapsulate them in independent classes so that they can be
+used interchangeably.
+
+-- it separates the definition of algos from their usage allowing the algos
+to vary independently of the client code.
+
+-- payment systems
+
+ interface --> implement classes --> class which uses stratergies -->main class
+ pay --> concrete --> shopping cart --> main calling shopping
+
+
+ when to use--
+
+ when have multiple algos to chose from and want the flexibility to switch between then at
+ runtime.
+
+ -- payment, sorting
+
+ -- Summary
+  The strategy design pattern encapsulates algos in independent classes allowing them to be used
+  interchangeably without modifying the client code.
+
+

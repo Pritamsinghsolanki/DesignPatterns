@@ -1,0 +1,14 @@
+
+
+--- object creation manageable
+
+--- subway
+
+-- allows to crate different variants of an object while avoiding the confusion of constructor parameters.
+
+-- multiple steps object creation.
+
+-- solving the telescoping constructor anti-pattern.
+
+-- makes the object creation process more flexible and controllable by creating objects in steps
+   while avoiding the confusion of constructor parameters.

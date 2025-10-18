@@ -1,0 +1,15 @@
+
+
+-- example-> hotel frontdesk ( facade)
+
+-- The facade provides a unified interface to a set of interfaces in a subsystem.The facade defines a higher-level
+   interface that makes the subsystem easier to use.
+
+-- example -> home theator n
+
+when to use
+
+when need ti simplify the interface of a complex system , you can use the facade pattern.
+It helps to provide a unified interface to operate complex subsytems, making easier to use and maintain.
+
+Improves code readability.( more concise )

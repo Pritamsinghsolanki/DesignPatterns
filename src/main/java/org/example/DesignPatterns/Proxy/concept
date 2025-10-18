@@ -1,0 +1,15 @@
+
+
+-- It provided a proxy for other objects to control access to them.
+-- example - security door program , Object data mappers
+--  base interface -> proxy class
+
+when to use
+
+-- when need to perform additional operation when accessing an object
+
+example - lazy loading, access control, logging
+
+
+
+-- to improve code maintainability and scalability.

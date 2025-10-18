@@ -1,0 +1,25 @@
+
+
+-- one to many relationship
+
+youtube example
+
+-- The observer pattern defines a dependency where, when one object's state changes, all objects
+that depend on it are notified and update automatically.
+
+-- object ( subject ) maintains a list of its dependents , known as observers. When the subjects data changes
+    it automatically notifies all its observers.
+
+
+-- job recruitment system
+
+   -- observer interface -->
+
+  =when to use
+   --when to notify multiple objects of a state change in another object without
+     tightly coupling them.
+
+    -- Event handling systems -> Job recruitment sites.
+
+
+

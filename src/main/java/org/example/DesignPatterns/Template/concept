@@ -1,0 +1,30 @@
+Template method lets you define the general structure of an algorithm while deferring
+the implementation of certain steps to subclasses.
+
+It is a behavioral design pattern the defines the skeleton of an algorithm in a base class.
+allowing subclasses to redefine specific steps without changing the algorithms structure.
+
+Template vs Strategy
+
+Template emphasis within a common framework , allowing subclasses to override parts of
+the process as needed. It focuses on a fixed process rather than choosing between
+different algo's.
+
+The stratergy pattern emphasis the interchangeability of algos.IT allows you to choose between
+different algos implemetation at runtime without affacting the structure of algo.
+
+The stratergy pattern encapsulates each implmentation in separate classes ,  making them interchangeable in
+through interfaces, while template method achieves partial customizaton through inheritence.
+
+when to use:
+
+When have a general process that needs to be shared among multiple classes but certain steps need
+to be customised based on specific requirements.
+
+Summary:
+The template method allows to define the skeleton of an lgorithm enabling
+subclasses to redefine certain steps without chaning the overall structure.
+
+same algo structure across different scenerios.
+
+abstract class -> implement classes -> main class calling concrete class.

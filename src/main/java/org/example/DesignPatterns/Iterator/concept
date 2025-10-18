@@ -1,0 +1,13 @@
+
+
+-- example consecutive songs
+
+-- It provides a way to sequentially access elements in a collection
+without exposing its internal implementation.
+
+-- Used to traverse elements in a container. The iterator pattern decouples
+algos from containers.
+
+-- Book Shop example
+
+-- provides decoupled way to traverse collection elements without going for internal details.
