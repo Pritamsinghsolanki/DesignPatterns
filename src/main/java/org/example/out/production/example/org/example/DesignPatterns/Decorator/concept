@@ -1,0 +1,17 @@
+
+
+-- statically or dynamically add functionality without altering the structure
+
+-- coffee topings
+
+-- It allows to add new functionality to an object dynamically without modifying the original code.
+Achieved by creating decorator classes that wrap the original object and add new behaviours or attributes.
+
+-- example - coffee
+
+when to use
+
+-- When want to dynamically add new functionality to object without modifying the original code.
+  single 0responsibility
+
+-- we can flexibly enhance an object's features at runtime.

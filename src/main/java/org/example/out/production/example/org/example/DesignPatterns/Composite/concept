@@ -1,0 +1,15 @@
+
+
+-- composition of file system
+
+example - folder system
+
+-- Allows to compose objects into tree structures to represent part-whole hierarchies.It makes the client treat individual
+objects and compositions of objects uniformly.
+
+== File System
+
+-- when to use
+
+-- when want to compose objects into tree structures to represent part-whole hierarchirs.
+   The composite pattern helps to handle individual objects and compositions uniformly.

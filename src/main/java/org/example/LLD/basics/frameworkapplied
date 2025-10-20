@@ -1,0 +1,180 @@
+Perfect ⚡ — let’s apply the 7-step LLD framework on a classic interview problem:
+👉 Parking Lot System Design (used by companies like Swiggy, Ola, Amazon, PhonePe, etc.)
+
+We’ll go step-by-step exactly as you would in an interview.
+
+🧭 Step 1️⃣ — Clarify the Problem
+
+Problem:
+Design a system to manage a parking lot where vehicles can enter, park, and leave.
+The system should assign parking spots efficiently, handle payments, and support multiple floors and vehicle types.
+
+Clarify Questions (and Answers):
+
+Question	Example Answer
+What vehicle types to support?	Car, Bike, Truck
+Is there a payment system?	Yes, hourly rate based on vehicle type
+Is there a ticket issued on entry?	Yes, entry ticket with timestamp
+How do we calculate fare?	On exit, duration × rate
+Should we support multiple floors?	Yes
+Do we need real-time availability?	Yes
+Out of scope?	Camera integration, gate automation
+
+🎯 Goal: Manage parking spaces efficiently and handle check-in/out + payments.
+
+🧩 Step 2️⃣ — Identify Core Entities (Nouns)
+
+From the problem, our key entities are:
+
+ParkingLot → overall system managing floors and spots
+
+ParkingFloor → contains multiple parking spots
+
+ParkingSpot → individual space (available/occupied)
+
+Vehicle → type, license number, owner info
+
+Ticket → generated on entry
+
+Payment → generated on exit
+
+EntranceGate / ExitGate → handles entry/exit workflow
+
+Optional:
+
+DisplayBoard → shows available spots
+
+RateCard → vehicle type → rate mapping
+
+⚙️ Step 3️⃣ — Identify Core Actions (Verbs)
+Action	Description
+assignSpot()	Find available spot for vehicle type
+generateTicket()	Create ticket with timestamp
+calculateFee()	Compute amount on exit
+processPayment()	Handle payment
+vacateSpot()	Free the spot after exit
+displayAvailability()	Show available spots per floor
+
+🎯 These actions become methods in classes or services.
+
+🏗️ Step 4️⃣ — Define System Boundaries (Modules)
+
+Let’s separate modules using layered architecture.
+
+Layer	Example Classes	Responsibility
+Model / Entity Layer	ParkingLot, Vehicle, Ticket, Spot	Core domain classes
+Service Layer	ParkingService, PaymentService	Core business logic
+Controller Layer	EntryGateController, ExitGateController	Handles user requests
+Repository Layer	ParkingSpotRepository	DB operations (if persistence)
+Utility Layer	RateCalculator, TicketPrinter	Helper utilities
+
+🎯 Each layer follows Single Responsibility.
+
+🧱 Step 5️⃣ — Design Class Diagram (with relationships)
+UML Sketch (Textual Form)
++-------------------+
+| class ParkingLot  |
+|-------------------|
+| - floors: List<ParkingFloor> |
+|-------------------|
+| + findSpot(VehicleType)     |
+| + parkVehicle(Vehicle)      |
+| + vacateSpot(Ticket)        |
++-------------------+
+
+        1         *
+ParkingLot ------> ParkingFloor
+ParkingFloor -----> ParkingSpot (1 to many)
+
++-------------------+
+| class ParkingSpot |
+|-------------------|
+| - id: String      |
+| - type: VehicleType |
+| - isAvailable: boolean |
+|-------------------|
+| + assignVehicle(Vehicle)   |
+| + removeVehicle()          |
++-------------------+
+
++-------------------+
+| class Vehicle     |
+|-------------------|
+| - licenseNumber   |
+| - type            |
++-------------------+
+
++-------------------+
+| class Ticket      |
+|-------------------|
+| - ticketId        |
+| - vehicle         |
+| - entryTime       |
+| - spotId          |
+|-------------------|
+
++-------------------+
+| class Payment     |
+|-------------------|
+| - paymentId       |
+| - ticketId        |
+| - amount          |
+|-------------------|
+| + processPayment()|
++-------------------+
+
++-------------------+
+| enum VehicleType  |
+| CAR, BIKE, TRUCK  |
++-------------------+
+
+
+🎯 Relationships:
+
+One ParkingLot → many Floors → many Spots.
+
+One Ticket → one Vehicle and one Spot.
+
+🔄 Step 6️⃣ — Sequence Flow (Interaction)
+1️⃣ Vehicle Entry Flow
+Vehicle → EntranceGateController
+          ↓
+   ParkingService.findAvailableSpot(vehicleType)
+          ↓
+   Assign spot + mark occupied
+          ↓
+   Ticket generated and returned
+
+2️⃣ Vehicle Exit Flow
+Vehicle → ExitGateController
+          ↓
+   Ticket validated
+          ↓
+   RateCalculator.calculate(ticket)
+          ↓
+   PaymentService.processPayment()
+          ↓
+   Mark spot available again
+
+
+🎯 Tip: Always describe the sequence clearly — interviewers love this.
+
+🔧 Step 7️⃣ — Add Cross-Cutting Concerns
+Concern	How We Handle It
+Concurrency	Use locks on spot allocation (synchronized block or DB transactions)
+Extensibility	Add new VehicleType easily (enum-based or strategy)
+Scalability	Each floor handled by microservice / partitioned by floorId
+Caching	Cache available spots count in Redis
+Payment Integration	PaymentService can integrate with 3rd-party payment gateway
+Error Handling	Throw custom exceptions (e.g., NoAvailableSpotException)
+Persistence	Use DB with spot, ticket, payment tables
+Logging & Monitoring	Log each entry/exit, expose metrics per floor
+✅ Final Quick Summary
+Step	Deliverable
+1️⃣ Clarify	Scope: multiple floors, multiple types, hourly charge
+2️⃣ Entities	Lot, Floor, Spot, Vehicle, Ticket, Payment
+3️⃣ Actions	assignSpot(), calculateFee(), vacateSpot()
+4️⃣ Modules	Controller, Service, Repository
+5️⃣ Classes	OOP diagram with SRP
+6️⃣ Sequence	Entry & Exit flow
+7️⃣ Extras	Concurrency, payment, scalability, errors

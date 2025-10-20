@@ -1,0 +1,19 @@
+
+
+-- save and restore the state of an object without breaking its encapsulation
+
+-- Momento pattern captures an object's internal state without violating encapsulation
+and allows the state to be restored later.
+
+
+-- momento class ( state )  --> Object whose state want to restore --> care taker class for momento objects --> client code
+
+
+when to use:
+
+when you need to capture and restore the state of an object without violating encapsulation.
+
+
+-- undo redo state.
+
+-- more flexible and maintainable.

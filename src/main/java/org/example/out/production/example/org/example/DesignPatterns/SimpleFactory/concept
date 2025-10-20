@@ -1,0 +1,11 @@
+
+
+-- flexible object creation is needed
+
+-- it defines an interface for creating objects but lets subclasses decide
+which class to instantiate.
+
+benefits
+1.Decoupling the creation process
+2.Enhanced flexibility
+3.Improved code maintainability

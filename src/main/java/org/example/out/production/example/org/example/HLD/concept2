@@ -1,0 +1,180 @@
+Perfect! Let’s do this in two steps: I’ll first create a concise one-page HLD cheat-sheet you can memorize or print, and then we can do a timed mock interview to practice it live.
+
+High-Level Design (HLD) Cheat-Sheet — One Page
+Step 1: Opening / Script
+
+“Thanks! I’ll clarify assumptions, outline core APIs, show a component diagram, walk through a request, and then cover scaling, failures, and trade-offs. I’ll assume X users, Y RPS, Z data size unless you suggest otherwise.”
+
+Step 2: Clarify & Assume
+
+Functional requirements (FR) — core features.
+
+Non-functional requirements (NFR) — scale, latency, availability.
+
+Assumptions with numbers:
+
+Users: 10M monthly
+
+RPS: 5k peak
+
+Data size: 1KB / object
+
+Step 3: Core APIs
+API	Input	Output	QPS	Latency
+POST /posts	{userId, text}	201 Created	500	<100ms
+GET /feed	{userId}	List<Post>	1000	<200ms
+Step 4: Component Diagram
+
+Client → API Gateway → Microservices → DB + Cache → Queue → Storage/Analytics
+
+Async: dashed arrows; high-throughput path: lightning bolts.
+
+Keep minimal, add details only on request.
+
+Step 5: Data Flow
+
+Walk through a main request:
+
+Client → API Gateway
+
+Gateway → Service
+
+Service → DB / Cache
+
+Service → Queue (async) → Notification/Analytics
+
+Response back to client
+
+Step 6: Database Design
+
+Choose SQL / NoSQL based on requirements.
+
+Show tables/collections and key relationships.
+
+Indexing & sharding for scale.
+
+Cache for hot data (Redis/Memcached).
+
+Step 7: Scaling & HA
+
+Horizontal scaling: multiple service instances.
+
+Load balancer (round-robin / sticky).
+
+DB replication & sharding.
+
+Caching patterns: cache-aside, TTL.
+
+Async queues for decoupling.
+
+Step 8: Failure Handling
+
+Retry & circuit breakers.
+
+Dead-letter queues for async failures.
+
+Backup & disaster recovery.
+
+Monitoring & logging (Prometheus + Grafana, ELK).
+
+Step 9: Security
+
+Auth: JWT / OAuth
+
+Rate limiting & throttling
+
+Encryption (at rest & in transit)
+
+Step 10: Trade-offs / Talking Points
+
+SQL vs NoSQL → consistency vs scale
+
+Sync vs Async → simplicity vs latency
+
+Cache TTL → freshness vs performance
+
+Shard by user ID or content ID depending on access pattern
+
+Step 11: Closing / Deep-Dive Offer
+
+“This design meets X, Y, Z. Key cost drivers are A & B. Next improvement could be C. I can deep dive into DB design, scaling strategy, or operational concerns — which would you like?”
+
+Step 12: Time Management
+
+Requirements + Assumptions: 5–7 min
+
+APIs + Diagram: 5–7 min
+
+Data flow + DB: 5–8 min
+
+Scaling & Failures: 3–5 min
+
+Trade-offs + Wrap-up: 2–3 min
+
+✅ Quick Mental Tricks
+
+Always state assumptions with numbers.
+
+Draw minimal boxes first, then add arrows/details.
+
+Explain reasoning for every choice.
+
+Keep phrases ready to buy time: “Let me outline the approach” / “I’ll assume X for scaling calculations.”
+
+            ┌────────────┐
+            │   Client   │
+            │(Web/Mobile)│
+            └─────┬──────┘
+                  │
+                  ▼
+            ┌──────────────┐
+            │ API Gateway  │
+            │(Auth, Rate  │
+            │ Limiting)    │
+            └─────┬────────┘
+                  │
+         ┌────────┴────────┐
+         │                 │
+         ▼                 ▼
+┌─────────────────┐   ┌─────────────────┐
+│ User Service    │   │ Post Service    │
+│ (Profile, Auth) │   │ (Create, Fetch) │
+└───────┬─────────┘   └───────┬─────────┘
+        │                     │
+        ▼                     ▼
+┌─────────────┐         ┌─────────────┐
+│ Database    │         │ Database    │
+│ SQL / NoSQL │         │ SQL / NoSQL │
+└─────────────┘         └─────────────┘
+        │                     │
+        ▼                     ▼
+┌─────────────┐         ┌─────────────┐
+│ Cache       │         │ Cache       │
+│ (Redis)     │         │ (Redis)     │
+└─────────────┘         └─────────────┘
+        │                     │
+        └─────────┐ ┌─────────┘
+                  ▼ ▼
+             ┌─────────────┐
+             │ Message     │
+             │ Queue / MQ  │
+             │ (Kafka/RabbitMQ)
+             └─────┬───────┘
+                   │
+                   ▼
+           ┌──────────────┐
+           │ Analytics /  │
+           │ Notification │
+           │ Service      │
+           └──────────────┘
+Client Layer: Web, mobile, external apps.
+
+API Gateway: Single entry point, handles auth, rate limiting, routing.
+
+Services / Microservices: Modular services (User, Post, Notification, etc.).
+
+Database Layer: SQL for relational, NoSQL for scale, plus cache.
+
+Message Queue: Decouple services for async tasks.
+
+Analytics / Notification: Optional downstream systems for logs, metrics, emails, or push notifications.

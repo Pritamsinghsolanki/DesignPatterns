@@ -1,0 +1,69 @@
+
+Requirement Clarification
+
+Code a Parking Lot System
+---
+
+Domains
+0.Parking Floor
+1.Parking Lot
+2.Parking Spot
+3.Vehicle
+4.Ticket
+5.Payment
+6.Entry Gate/Exit Gate
+
+methods
+1.assignSpot()
+2.generateTicket()
+3.parkVehicle()
+4.calculateDuration()
+5.processPayment()
+6.unParkVehicle()
+
+Data flow:
+Entry:
+vehicle -> entryGate -> assignSpot() + mark spot -> generateTicket() -> parkVehicle()
+
+Exit:
+vehicle -> exitGate -> ticketValidation() -> calculateDuration() -> processPayment() -> unparkVehicle() --> unassignSpot()
+
+LayerBreakDown
+Domain classes -> entities
+Request Handling -> Controllers & DTOs
+Business Logic -> Service layer
+DB Operations -> Repo layer
+utilities -> utility classes
+
+Concerns
+1.Concurrency -> synchronization
+2.Extensibility -> enums, design patterns
+3.Logging -> will place logs every place.
+4.Persistence -> DB tables( Vehicle, payment, spot, ticket)
+5.Caching -> Cache Available spots in storage.
+
+Design patterns
+1.Factory -> vehicle creation
+2.Strategy -> payment method
+3.Singleton -> parking lot( resource optimisation for shared configs.)
+4.Observer -> for notifications
+5.State -> payment status
+
+SOLID Principles
+1.Single Resp.
+2.O/C P: ( extensible for new types)
+3.Liscov : ( interface-based)
+4.Interface segregation: small-contracts
+5.Dependency: services depend upon abstractions
+
+Data: Entities
+Behavior: Methods
+Interaction: Flow
+
+
+Code :  Model -> Service -> Controller.
+
+
+
+
+

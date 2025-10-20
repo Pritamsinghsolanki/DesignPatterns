@@ -1,0 +1,24 @@
+
+
+-- In Oops , the visitor pattern separates algos from the
+   objects they operate on , allowing you to add new operations
+   without modifying the objects structure aligns with Open closed principle.
+
+
+-- zoo example
+
+
+  -- interface --> interface ( extensible) --> concreate class ( class1 , class2)--> client code
+
+
+ when to use
+
+ when you need ti add new functionality to objects without
+ modifying their structure .Its useful when
+ object structure is stable but new operations are frequently needed.
+
+ Summary
+
+ IT introduces a visitor object that enables you to add new functionality to objects
+ without modifying their structure. In real world development the visitor pattern helps
+ maintain the open/closed principle , enhancing the system's extensibility and maintainability.

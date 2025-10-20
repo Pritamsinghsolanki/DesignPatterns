@@ -1,0 +1,15 @@
+-- sometimes we need to add layer between abstration and implementation
+
+
+-- Real world
+-- The bridge is about favoring composition over inheritance.It moves implementation details
+from one hierarchy to another object with a separate hierarchy.
+-- It decouples an abstraction from its implementation so that two can vary independently.
+
+-- example -- shape class
+
+when to use
+
+-- when abstraction part and implementation part so that they can vary independently.
+
+-- flexible , extensible, code maintainability

@@ -1,0 +1,17 @@
+
+
+-- example-> massive multiple player game saving memory while sharing common objects
+
+-- It reduces memory usage by sharing objects . It used a factory to manage these shared objects and ensures
+that each object is created only once.
+
+-- example -> drawing program
+
+-- when to use
+
+-- when you need to create a large number of similar objects and want to reduce consumption by sharing objects.
+
+-- Summary:
+
+   It reduces memory usage and improves performance by sharing objects.It can help us create more efficient systems
+   in scnerios where a large no. of similar objects are needed.

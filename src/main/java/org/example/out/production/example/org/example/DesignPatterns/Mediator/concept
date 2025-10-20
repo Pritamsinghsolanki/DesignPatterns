@@ -1,0 +1,37 @@
+
+-- help simplifying communication between objects and avoids decoupling
+
+-- teacher ->  Class monitor -> students
+
+
+-- Mediator pattern introduces a third party object ( called the mediator) to control the interaction
+between two or more pbjects ( called colleagues ).
+
+-- the mediator pattern defines an object that encapsulates how a set of objects interact.This pattern
+is considered a behavioral pattern because it can change the program's running behavior.
+
+-- Mediator VS Proxy
+
+-- mediator pattern focuses on simplifying communication between objects by managing and coordinating
+their interactions through a mediator.
+
+-- the proxy pattern on the other hand controls access to an object , often adding extra
+functionality like access control or lazy loading.
+
+-- The mediator pattern is used for coordinating communication , while
+the proxy pattern is used for controlling access.
+
+-- example - chat room example
+
+
+-- When to use
+
+   When you want to reduce complex dependencies between objects and promote decoupling , you ca use meduator
+
+
+   Summary
+
+ The mediator design pattern intriduces a mediator
+ object to reduce complex communicaiton and dependencies between
+ objects , making the system easier to maintain and extend;.
+

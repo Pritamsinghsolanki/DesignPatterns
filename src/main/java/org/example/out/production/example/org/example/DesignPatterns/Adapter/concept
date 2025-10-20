@@ -1,0 +1,17 @@
+
+
+-- incompatible interfaces
+
+-- memory card reader, power socket adapter,
+
+-- It allows you to wrap an incompatible object in an adapter so that it becomes compatible with another class.
+
+-- It allows the interface of an existing class to be used as another interface.
+
+-- video player program
+
+when you want to resuse some existing classed but their interfaces are incompatible with the current system'
+you can use adapter pattern
+
+The adapter pattern helps to convert the interface of a class into another interface , allowing classes
+with incompatible interface to work together.

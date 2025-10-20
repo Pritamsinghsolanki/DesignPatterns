@@ -1,0 +1,14 @@
+
+-- It defines an interface for creating a series of related
+objects, allowing the client to separate itself from the creation
+process.
+
+-- An abstract factory is a factory of factories .It provides a way to create related
+   or dependent objects without specifying their concrete classes.
+
+when to use
+
+-- when you need to create a set of related or dependent objects and want to implement
+this through a unified interface, you can use the abstract factory pattern.
+
+allowing client to separate itself from the creation process.

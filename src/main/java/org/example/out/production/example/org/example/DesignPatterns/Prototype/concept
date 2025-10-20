@@ -1,0 +1,14 @@
+
+
+-- copies of object
+
+-- allows to crete new objects by copying existing ones, without having to recreate every detail of the object.
+
+-- avoid the complexity or time-consumption operations of creating objects from scratch.
+
+Benefits
+1.Performance Improvement
+2.Simplified Object Creation
+
+when to use
+

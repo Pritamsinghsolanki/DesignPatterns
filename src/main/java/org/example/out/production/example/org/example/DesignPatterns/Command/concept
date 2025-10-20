@@ -1,0 +1,27 @@
+
+
+-- Encapsulate action as objects allowing parameterization and decoupling of requests
+
+
+-- Example -> order a food
+
+-- Command pattern allows you to encapsulate actions as objects, decoupling the client from the receiver.
+
+-- The command pattern is in which an object is used to encapsulate all the information needed to perform
+an action or trigger an event at a later time.This information includes the method name , the object that owns the
+method and the parameters for the method.
+
+-- Controlling a light control
+
+-- receiver -> command interface --> concrete classes --> Invoker class -> client class
+
+-- When to use
+
+  It is perfect for implementing features --> like scheduling, logging, undo, and redo.
+  When you need to encapsulate operations as objects and control behaviour through the arrangement
+  of these operations, the command pattern is very useful.
+
+  Summary:
+  It encapsulates the requests as objects, allowing the system to support complex command
+  request, and operation management. It offers a flexible way to extend system funcitonality while maintaining decouling
+  between the invoker and receiver.
