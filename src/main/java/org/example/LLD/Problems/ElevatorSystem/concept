@@ -1,0 +1,42 @@
+Problem Recap
+
+We are designing an Elevator System with:
+Multiple floors (e.g., 50)
+Multiple elevators (e.g., 6)
+Each elevator has its own controller.
+A centralized Scheduler/Dispatcher decides which elevator serves a request.
+
+Entities:
+Elevator System
+ElevatorCar
+Floor
+Door
+Display
+Request
+Schedular
+
+methods:
+assignElevator()
+moveToFloor
+openDoor()
+closeDoor()
+clearTarget()
+
+Data flow:
+User -> ElevatorSystemController().requestElevator()
+             -> creates Floor Request
+             -> ElevatorController.handleRequest()
+             -> Schedular.assignElevator()
+             -> ElevatorCar.addRequest() + move()
+             -> Door open/close
+             -> Request served -> Elevator IDLE
+
+
+Design Patterns:
+Singleton → ElevatorSystem
+Strategy → SchedulerAlgorithm
+State → ElevatorCar state transitions
+Observer → FloorButton notifications
+
+
+
