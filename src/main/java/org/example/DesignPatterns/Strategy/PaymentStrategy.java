@@ -1,5 +1,5 @@
 package org.example.DesignPatterns.Strategy;
 
-interface PaymentStrategy {
+public interface PaymentStrategy {
     void pay(int amount);
 }

@@ -1,0 +1,111 @@
+
+Requirements:
+
+Design a vending machine that:
+
+Accepts coins/notes.
+Allows item selection.
+Dispenses item + change.
+Handles refunds & out-of-stock cases.
+Can support multiple item categories (drinks, snacks, etc).
+---------------------------------------------------------------------
+
+Functional Requirements:
+1.User inserts coins/notes
+2.User selects an item.
+3.Machine validates selection and payment.
+4.Dispenses item + change if required
+5.Cancels transaction and refunds if required.
+6.Supports admin operations like refill or restock.
+
+Non-Functional Requirements
+1.Thread-safe ( concurrent users pressing buttons)
+2.Extensible ( new payment types , item categories)
+3.Fault-tolerant ( refunds or failure )
+4.Loggable ( each transaction recorded )
+
+
+Entities:
+
+1.Vending Machine ( main orchestrator managing states, inventorym payments)
+2.Item ( represent a product ( id, name, price, quality))
+3.State( interface ) ( idle , hasmoney, dispenseitem)
+4.Inventory ( manages stock of item)
+5.Coin ( enum for supported denomination)
+6.Payment Service ( handles money insertion, balance, refunds )
+7.Display Panel ( show user messages)
+
+Design Patterns
+1.State ( to handle machine behaviour ( Idle -> hasmoney -> dispense -> return)
+2.Strategy ( for extensible payment methods ( Coin, Card, UPI)
+3.Factory ( for item or pyment object creation)
+4.Singleton ( for central vending machine instance)
+5.Observer ( for monitoring and logging purpose)
+
+Data flow:
+User → insertCoin() → PaymentService updates balance
+     → selectItem() → validate price & stock
+     → dispense() → Item reduced + change returned
+     → VendingMachine resets to IdleState
+
+
+          +-------------------+
+          |  VendingMachine   |  <-- Singleton
+          +-------------------+
+           | state: State
+           | paymentStrategy
+           | inventory
+           | observers
+           |
+           v
+   +----------------+
+   | VendingState   |  <-- Interface
+   +----------------+
+   | + insertCoin() |
+   | + selectItem() |
+   | + dispense()   |
+   | + refund()     |
+   +----------------+
+      /      |       \
+IdleState HasMoney DispenseState
+
+   +----------------+
+   | PaymentStrategy|  <-- Strategy Pattern
+   +----------------+
+   | + pay(amount)  |
+   +----------------+
+    /       |        \
+ CoinPayment CardPayment UpiPayment
+
+   +----------------+
+   |  Observer      |  <-- Observer Pattern
+   +----------------+
+   | + update()     |
+   +----------------+
+    /          \
+ Logger     AlertSystem
+
+ User → insertCoin()
+  → PaymentStrategy.pay() (Strategy)
+  → State changes from Idle → HasMoney (State)
+  → selectItem()
+  → DispenseState triggers → dispense()
+  → Observers notified (Observer)
+  → Factory creates Item (Factory)
+  → Singleton ensures single instance
+
+
+“I used the Command pattern to isolate user input handling from business logic — so adding new buttons or UI channels (like mobile or web) doesn’t require touching the vending logic. This also supports undo/redo operations easily.”
+
+
+If the interviewer asks “How would you extend this?”, you can mention:
+
+Add UPI/CardPaymentStrategy easily using Strategy.
+
+Add AdminCommand for restocking.
+
+Add TimeoutState to refund if idle too long.
+
+Add DisplayObserver for LCD updates.
+
+Use Enum-based item categories for extensibility.
