@@ -1,0 +1,438 @@
+Perfect ⚡ — here’s your 🔥 Dynamic Programming (DP) Pattern Sheet — the ultimate cheat sheet for interviews.
+
+These 10 core DP patterns cover 95%+ of all DP questions asked in FAANG, LeetCode Blind 75, and system rounds.
+Each pattern includes:
+
+🧩 Concept / Recurrence
+
+🧠 Example Problems
+
+💡 Typical Transitions
+
+⏱️ Complexity Insight
+
+🧮 Dynamic Programming Pattern Sheet (10 Core Templates)
+🟩 1️⃣ Fibonacci / Simple Recurrence
+
+Concept:
+Each state depends on a fixed number of previous states.
+
+Recurrence:
+
+dp[i] = dp[i-1] + dp[i-2]
+
+
+Examples:
+
+Climbing Stairs
+
+Fibonacci Number
+
+Decode Ways
+
+Complexity:
+
+Time: O(n)
+
+Space: O(1) (by storing last 2 states)
+
+🟩 2️⃣ 1D DP — Pick / Not Pick (House Robber Type)
+
+Concept:
+At each index, choose to take or skip an element.
+
+Recurrence:
+
+dp[i] = max(nums[i] + dp[i-2], dp[i-1])
+
+
+Examples:
+
+House Robber I & II
+
+Delete and Earn
+
+Max Sum of Non-Adjacent Elements
+
+Complexity: O(n)
+
+🟩 3️⃣ 2D Grid DP (Paths / Min Cost)
+
+Concept:
+You move in grid — right or down; each cell depends on top and left.
+
+Recurrence:
+
+dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])
+
+
+Examples:
+
+Minimum Path Sum
+
+Unique Paths
+
+Dungeon Game
+
+Complexity: O(m×n)
+
+🟩 4️⃣ Subset Sum / Knapsack Pattern
+
+Concept:
+At each element, you either include or exclude it.
+
+Recurrence:
+
+dp[i][target] = dp[i-1][target] || dp[i-1][target - nums[i]]
+
+
+Examples:
+
+Subset Sum
+
+Partition Equal Subset Sum
+
+0/1 Knapsack
+
+Complexity: O(n×sum)
+
+🟩 5️⃣ Coin Change / Unbounded Knapsack
+
+Concept:
+You can reuse elements (coins) multiple times.
+
+Recurrence:
+
+dp[i] = min(dp[i], dp[i - coin] + 1)
+
+
+(For combinations, use nested loops in correct order)
+
+Examples:
+
+Coin Change I & II
+
+Minimum Coins to Make Amount
+
+Complexity: O(n×amount)
+
+🟩 6️⃣ Longest Increasing Subsequence (LIS)
+
+Concept:
+Find max increasing chain.
+
+Recurrence:
+
+dp[i] = 1 + max(dp[j]) where nums[i] > nums[j]
+
+
+Examples:
+
+LIS
+
+Russian Doll Envelopes
+
+Longest Chain of Pairs
+
+Complexity: O(n²) or O(n log n)
+
+🟩 7️⃣ String Matching (LCS / Edit Distance)
+
+Concept:
+Compare two strings character by character.
+
+Recurrence (LCS):
+
+if s1[i] == s2[j]:
+  dp[i][j] = 1 + dp[i-1][j-1]
+else:
+  dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+
+Examples:
+
+Longest Common Subsequence
+
+Edit Distance
+
+Minimum Deletions/Insertions
+
+Complexity: O(m×n)
+
+🟩 8️⃣ Partition DP / Interval DP
+
+Concept:
+Split a sequence into parts; try all partition points.
+
+Recurrence:
+
+dp[i][j] = min(dp[i][k] + dp[k+1][j] + cost)
+
+
+Examples:
+
+Matrix Chain Multiplication
+
+Burst Balloons
+
+Palindrome Partitioning II
+
+Complexity: O(n³)
+
+🟩 9️⃣ DP on Subsequences
+
+Concept:
+For each element → either include it in the subsequence or not.
+
+Recurrence:
+
+dp[i][j] = dp[i-1][j] + dp[i-1][j - nums[i]]
+
+
+Examples:
+
+Count Subsets with Sum K
+
+Target Sum
+
+Number of Subsequences with Given Difference
+
+Complexity: O(n×sum)
+
+🟩 🔟 Bitmask DP / State Compression
+
+Concept:
+Used when you have small n (≤20) and want to track used states via bitmask.
+
+Recurrence:
+
+dp[mask] = min(dp[mask], dp[mask ^ (1 << j)] + cost)
+
+
+Examples:
+
+Traveling Salesman Problem (TSP)
+
+Assign Jobs / Match Tasks
+
+Minimum XOR Sum of Two Arrays
+
+Complexity: O(n² × 2ⁿ)
+
+🧠 Quick Pattern Recognition Table
+Pattern Type	Recognize By	Example
+Fibonacci	Linear recurrence, 1D dependency	Climb Stairs
+Pick/Skip	You can choose or skip items	House Robber
+Subset/Knapsack	Target sum or selection	Partition Sum
+Grid	Movement in matrix	Unique Paths
+String Matching	2 strings given	LCS, Edit Distance
+Interval	Split between i...j	Matrix Chain
+Subsequence	Count / Max subsequences	Target Sum
+Bitmask	n ≤ 20, all subsets	TSP
+
+Would you like me to now give you a DP Master Template in Java —
+a reusable structure you can adapt instantly for any DP (recursion + memoization + tabulation)?
+
+
+🔥 Perfect move, bro — that’s exactly how top-tier engineers master DSA fast.
+We’ll now build Master Templates for each major DSA topic — just like we did for DP.
+These templates will serve as code skeletons you can instantly adapt in interviews.
+
+We’ll cover, one by one:
+
+✅ Array
+
+✅ Linked List
+
+✅ HashMap / HashSet
+
+✅ Heap / PriorityQueue
+
+✅ String
+
+✅ Tree / Binary Tree / BST
+
+✅ (Already done) Dynamic Programming
+
+🧩 1. ARRAY MASTER TEMPLATE (Iteration + Two Pointers + Sliding Window)
+Basic Iteration
+for (int i = 0; i < arr.length; i++) {
+    // process arr[i]
+}
+
+Two Pointers
+int left = 0, right = arr.length - 1;
+while (left < right) {
+    // process arr[left], arr[right]
+    if (condition) left++;
+    else right--;
+}
+
+Sliding Window
+int left = 0;
+for (int right = 0; right < arr.length; right++) {
+    // expand window
+    // while condition fails -> shrink window
+    while (condition_not_satisfied) left++;
+    // process current window
+}
+
+
+✅ Used for: subarray, max sum, window-based questions (e.g. longest substring, fruit baskets).
+
+🔗 2. LINKED LIST MASTER TEMPLATE
+Node Definition
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int val) { this.val = val; }
+}
+
+Traverse
+ListNode curr = head;
+while (curr != null) {
+    // process curr.val
+    curr = curr.next;
+}
+
+Reverse Linked List
+ListNode prev = null, curr = head;
+while (curr != null) {
+    ListNode next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+}
+return prev;
+
+Detect Cycle (Floyd’s Algorithm)
+ListNode slow = head, fast = head;
+while (fast != null && fast.next != null) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow == fast) return true;
+}
+return false;
+
+
+✅ Used for: Palindrome check, intersection, middle node, etc.
+
+🧠 3. HASHMAP / HASHSET MASTER TEMPLATE
+Frequency Counter
+Map<Integer, Integer> map = new HashMap<>();
+for (int num : nums)
+    map.put(num, map.getOrDefault(num, 0) + 1);
+
+Check Existence
+Set<Integer> set = new HashSet<>();
+for (int num : nums) {
+    if (set.contains(target - num)) return true;
+    set.add(num);
+}
+
+Iterate Map
+for (Map.Entry<Integer, Integer> e : map.entrySet()) {
+    int key = e.getKey(), value = e.getValue();
+}
+
+
+✅ Used for: Two Sum, group anagrams, subarray sum, sliding window frequency.
+
+🏔 4. HEAP / PRIORITY QUEUE MASTER TEMPLATE
+Min-Heap / Max-Heap
+// Min Heap
+PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+// Max Heap
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+
+Common Operations
+minHeap.add(num);
+minHeap.peek();   // smallest
+minHeap.poll();   // remove smallest
+
+
+✅ Used for: Kth largest, merge K lists, top K frequent elements, Dijkstra.
+
+💬 5. STRING MASTER TEMPLATE
+Traverse / Build
+for (char c : s.toCharArray()) {
+    // process each character
+}
+
+Reverse
+StringBuilder sb = new StringBuilder(s);
+sb.reverse().toString();
+
+Palindrome Check
+int l = 0, r = s.length() - 1;
+while (l < r) {
+    if (s.charAt(l++) != s.charAt(r--)) return false;
+}
+return true;
+
+Character Frequency
+int[] freq = new int[26];
+for (char c : s.toCharArray())
+    freq[c - 'a']++;
+
+
+✅ Used for: anagrams, substrings, sliding window, parsing.
+
+🌲 6. TREE / BINARY TREE / BST MASTER TEMPLATE
+TreeNode Definition
+class TreeNode {
+    int val;
+    TreeNode left, right;
+    TreeNode(int val) { this.val = val; }
+}
+
+DFS (Recursion)
+void dfs(TreeNode root) {
+    if (root == null) return;
+    dfs(root.left);
+    // process root.val
+    dfs(root.right);
+}
+
+BFS (Level Order)
+Queue<TreeNode> q = new LinkedList<>();
+q.offer(root);
+while (!q.isEmpty()) {
+    int size = q.size();
+    for (int i = 0; i < size; i++) {
+        TreeNode node = q.poll();
+        // process node.val
+        if (node.left != null) q.offer(node.left);
+        if (node.right != null) q.offer(node.right);
+    }
+}
+
+BST Search / Insert
+boolean searchBST(TreeNode root, int val) {
+    if (root == null) return false;
+    if (root.val == val) return true;
+    if (val < root.val) return searchBST(root.left, val);
+    else return searchBST(root.right, val);
+}
+
+
+✅ Used for: path sum, diameter, LCA, BST validation, serialize/deserialize.
+
+⚙️ 7. DYNAMIC PROGRAMMING MASTER TEMPLATE (you already have)
+
+We already built:
+
+Recursion + Memoization
+
+Tabulation
+
+Space Optimization
+
+
+You said:
+both
+You said:
+Tree DSA (Traversals, LCA, Diameter, Serialization)
+🔥 Heap & Priority Queue
+🔥 String Algorithms (KMP, Rabin-Karp, Trie)
