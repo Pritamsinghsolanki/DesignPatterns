@@ -1,0 +1,193 @@
+Perfect ✅ — let’s begin giving answers to the most important Java interview questions, one by one — with short, high-quality, interview-ready explanations.
+
+I’ll go category-wise (starting with Core Java & OOPs) so that it’s easy to revise later.
+
+🔹 1. Core Java & OOPs
+Question	Answer (Concise & Interview-Ready)
+1. What are the main OOP principles in Java?	Encapsulation (data hiding using private fields), Abstraction (hiding implementation), Inheritance (code reuse), Polymorphism (method overloading/overriding for flexibility).
+2. Difference between abstract class and interface?	Abstract class can have both abstract & concrete methods; supports state (fields). Interface has only abstract methods (until Java 8). A class can implement multiple interfaces but extend only one abstract class.
+3. Why is String immutable in Java?	For security, caching, and thread-safety — once created, its value cannot change. Helps in string pool reuse.
+4. Difference between == and equals()?	== compares references, equals() compares content. Example: "abc" == new String("abc") → false; .equals() → true.
+5. Difference between overloading and overriding?	Overloading: Same method name, different parameters (compile-time). Overriding: Subclass redefines parent method (runtime).
+6. What is encapsulation?	Wrapping data and methods together. Achieved via private fields + getters/setters. Protects data integrity.
+7. What is polymorphism?	Ability of an object to take multiple forms — e.g., parent reference pointing to child object. Enables dynamic method dispatch.
+8. Can we override static methods?	No — static methods belong to the class, not an instance. They can be hidden, not overridden.
+9. Why use the ‘final’ keyword?	final variable → constant, final method → cannot override, final class → cannot extend.
+10. What is a marker interface?	Interface with no methods (e.g. Serializable, Cloneable) that marks a class for special behavior by JVM/framework.
+11. What are access modifiers in Java?	public (accessible everywhere), protected (same package + subclass), default (same package), private (within class).
+12. What is immutability in Java?	Once created, the object’s state cannot change (e.g., String, Wrapper classes). Achieved by making fields final and no setters.
+13. What is the difference between shallow and deep copy?	Shallow copy: Copies object references. Deep copy: Copies all objects recursively.
+14. What are SOLID principles?	SR (one reason to change), OCP (open/closed), LSP (substitutable), ISP (small interfaces), DIP (depend on abstractions).
+15. What is constructor chaining?	One constructor calling another within the same or parent class using this() or super().
+🔹 2. JVM & Memory Management
+Question	Answer
+1. What are JVM memory areas?	Method Area, Heap, Stack, PC Register, Native Method Stack.
+2. Difference between Heap and Stack?	Heap = object memory (shared). Stack = method calls/local variables (per thread).
+3. What is Garbage Collection (GC)?	Automatic removal of unreachable objects from heap memory.
+4. What are GC algorithms?	Mark-and-Sweep, Copying, Generational, G1, ZGC.
+5. What is difference between final, finally, finalize()?	final = keyword, finally = block executed after try-catch, finalize() = cleanup method (deprecated).
+6. What is Metaspace?	Stores class metadata (replaced PermGen since Java 8). Grows dynamically.
+7. What are ClassLoaders?	Load bytecode into JVM — Bootstrap, Extension, Application classloader.
+8. What is JIT Compiler?	Just-In-Time compiler converts bytecode to native code at runtime for speed.
+🔹 3. Collections Framework
+Question	Answer
+1. What is the Collection Framework?	Unified architecture for storing/manipulating data — includes List, Set, Queue, and Map.
+2. Difference between List, Set, and Map?	List = ordered, duplicates allowed; Set = no duplicates; Map = key-value pairs.
+3. How does HashMap work internally?	Uses hashCode() to find a bucket index; handles collisions using LinkedList or TreeNode (Java 8); retrieves using equals().
+4. Difference between HashMap and ConcurrentHashMap?	HashMap is not thread-safe, ConcurrentHashMap uses segment locks (Java 8 → per-bucket lock).
+5. What is fail-fast vs fail-safe?	Fail-fast throws ConcurrentModificationException (e.g. ArrayList); Fail-safe works on copy (e.g. CopyOnWriteArrayList).
+6. Difference between ArrayList and LinkedList?	ArrayList = dynamic array, fast random access; LinkedList = node chain, faster insert/delete.
+7. Comparable vs Comparator?	Comparable defines natural order (compareTo); Comparator defines custom order (compare).
+8. What is a WeakHashMap?	Uses weak references for keys — automatically removes entries when key is GC’d.
+🔹 4. Multithreading & Concurrency
+Question	Answer
+1. How to create a thread in Java?	Extend Thread or implement Runnable / Callable.
+2. Difference between start() and run()?	start() creates new thread; run() runs on same thread.
+3. What is synchronized keyword?	Ensures mutual exclusion and visibility of shared data.
+4. What is volatile?	Guarantees visibility (reads/writes go directly to main memory).
+5. Difference between wait(), sleep(), and join()?	wait() releases lock; sleep() doesn’t; join() waits for thread completion.
+6. What is deadlock?	Two threads holding locks and waiting for each other — no progress.
+7. What is ReentrantLock?	Advanced lock with tryLock(), fairness, interruptible waits.
+8. What is ExecutorService?	Thread pool framework for managing concurrent tasks.
+9. Difference between Callable and Runnable?	Runnable returns void; Callable returns a value and can throw checked exceptions.
+10. What is ThreadLocal?	Provides thread-confined variables (each thread gets its own copy).
+🔹 5. Java 8 + Features
+Question	Answer
+1. What is a Lambda Expression?	Anonymous function: (a, b) -> a + b. Improves readability.
+2. What is a Functional Interface?	Interface with one abstract method (e.g. Predicate, Function).
+3. What is Stream API?	Processes collections declaratively (map, filter, reduce).
+4. Difference between map() and flatMap()?	map() transforms elements; flatMap() flattens nested structures.
+5. What is Optional?	Avoids nulls; use Optional.ofNullable() and .orElse().
+6. What are default & static methods in interfaces?	Default = instance behavior with body; Static = utility methods.
+7. What is method reference (::)?	Short form of lambda: System.out::println.
+8. What’s new in Java 11/17?	Local-variable syntax for lambda, HttpClient, records, sealed classes, switch expressions.
+🔹 6. Exception Handling
+Question	Answer
+1. Checked vs Unchecked Exception?	Checked = compile-time (IOException), Unchecked = runtime (NullPointerException).
+2. throw vs throws?	throw used to explicitly raise; throws declares exception in method signature.
+3. What is try-with-resources?	Auto-closes resources implementing AutoCloseable.
+4. Can finally override return value?	Yes — if finally has return, it overrides try’s return (avoid doing this).
+5. How to create custom exception?	Extend Exception or RuntimeException.
+🔹 7. Spring Boot (Core)
+Question	Answer
+1. What is Dependency Injection (DI)?	Spring automatically injects required dependencies instead of manual creation (@Autowired).
+2. What is Inversion of Control (IoC)?	Framework controls object lifecycle & dependencies.
+3. What are stereotype annotations?	@Component, @Service, @Repository, @Controller — define bean roles.
+4. What is @RestController?	Combines @Controller and @ResponseBody → returns JSON/XML directly.
+5. What is @RequestParam vs @PathVariable?	@RequestParam → query param; @PathVariable → URI path value.
+6. What is @Transactional?	Makes a method atomic — commit/rollback DB operations.
+7. How does auto-configuration work?	Uses @EnableAutoConfiguration and spring.factories metadata.
+8. How to handle exceptions globally?	Use @ControllerAdvice + @ExceptionHandler.
+9. How to enable caching?	@EnableCaching on config + @Cacheable on method.
+10. What are profiles?	Used for environment-specific config (@Profile("dev")).
+🔹 8. Microservices Concepts
+Question	Answer
+1. What is a microservice?	Small, independently deployable service focused on a specific business capability.
+2. Monolith vs Microservice?	Monolith = single app; Microservice = multiple small services communicating via REST/Kafka.
+3. What is API Gateway?	Entry point handling routing, authentication, rate-limiting.
+4. What is Service Discovery?	Dynamic registration and lookup using Eureka/Consul.
+5. What is Circuit Breaker?	Stops repeated failed calls — prevents cascading failures (Resilience4j).
+6. What is distributed tracing?	Tracks requests across microservices (Zipkin/Jaeger).
+7. What is Saga Pattern?	Manages distributed transactions using compensating actions.
+🔹 9. Database & JPA
+Question	Answer
+1. What is JPA/Hibernate?	ORM framework mapping Java objects to DB tables.
+2. Entity Relationships?	@OneToOne, @OneToMany, @ManyToMany, @ManyToOne.
+3. Lazy vs Eager Loading?	Lazy loads data on demand; Eager loads immediately.
+4. What is CascadeType?	Defines operations propagated to child entities (ALL, PERSIST, REMOVE).
+5. What is N+1 problem?	Extra queries due to lazy fetch; fix with JOIN FETCH.
+6. What is Optimistic vs Pessimistic Locking?	Optimistic = version check, no lock; Pessimistic = locks record.
+🔹 10. Testing (JUnit + Mockito)
+Question	Answer
+1. @Mock vs @InjectMocks?	@Mock creates mock object; @InjectMocks injects mocks into tested class.
+2. What is MockMvc?	Test Spring MVC controllers without starting server.
+3. Difference between Unit & Integration test?	Unit = single component; Integration = components working together.
+
+
+
+🧩 Definition
+
+The N+1 problem occurs when your application executes 1 query to fetch a list of entities, and then N additional queries — one for each of those entities — to fetch their related data.
+
+➡️ Total queries = 1 (main query) + N (for each entity’s relation)
+
+This can quickly become a performance bottleneck, especially for large datasets.
+
+🔍 Example
+Suppose you have:
+
+Entity: Department
+
+Entity: Employee
+
+Relationship: One Department → Many Employees
+
+Code:
+List<Department> departments = entityManager
+        .createQuery("SELECT d FROM Department d", Department.class)
+        .getResultList();
+
+for (Department dept : departments) {
+    System.out.println(dept.getEmployees().size());
+}
+
+🚨 What Happens Internally
+
+1️⃣ First query:
+
+SELECT * FROM department;
+
+
+2️⃣ For each department (say N departments), Hibernate triggers:
+
+SELECT * FROM employee WHERE department_id = ?;
+
+
+So if there are 10 departments, you get 1 + 10 = 11 queries.
+
+🧠 Why It Happens
+
+By default, relationships like @OneToMany are lazy-loaded in JPA.
+That means related entities (e.g., employees) aren’t fetched until you explicitly access them.
+
+⚡ How to Fix It
+✅ Option 1: Use JOIN FETCH
+
+Fetch related entities in a single query:
+
+List<Department> departments = entityManager
+        .createQuery("SELECT d FROM Department d JOIN FETCH d.employees", Department.class)
+        .getResultList();
+
+
+👉 This generates one query that fetches both departments and employees.
+
+✅ Option 2: Use @EntityGraph
+
+Define a graph of entities to fetch eagerly:
+
+@EntityGraph(attributePaths = {"employees"})
+List<Department> findAll();
+
+✅ Option 3: Tune FetchType
+
+If you often need the child entities, use:
+
+@OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+private List<Employee> employees;
+
+
+⚠️ Note: Overusing EAGER can also cause performance issues — use it only when necessary.
+
+📊 Summary Table
+Problem	Cause	Example	Solution
+N+1 Query Problem	Lazy loading of child entities	Fetching Departments and then Employees separately	Use JOIN FETCH, EntityGraph, or optimize fetching strategy
+🧩 Interview Tip
+
+If asked in an interview:
+
+“What is the N+1 problem and how do you resolve it in Hibernate?”
+
+✅ Example answer:
+
+The N+1 problem occurs when fetching a parent entity triggers N additional queries for its child entities due to lazy loading. For example, fetching 10 departments can cause 11 queries. We can solve this using JOIN FETCH, @EntityGraph, or changing fetch strategy to EAGER when appropriate

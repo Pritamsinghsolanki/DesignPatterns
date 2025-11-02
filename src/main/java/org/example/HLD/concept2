@@ -178,3 +178,158 @@ Database Layer: SQL for relational, NoSQL for scale, plus cache.
 Message Queue: Decouple services for async tasks.
 
 Analytics / Notification: Optional downstream systems for logs, metrics, emails, or push notifications.
+
+Great question 🔥 — this is a system design + data internals topic that shows real backend understanding.
+Let’s break down clearly how Elasticsearch actually stores and retrieves data 👇
+
+⚙️ Elasticsearch — How It Stores Values Internally
+🧩 1. Basic Concept
+
+Elasticsearch (ES) is built on Apache Lucene, a search engine library written in Java.
+
+It stores data in inverted indexes — not like traditional databases.
+
+So instead of rows & columns (like SQL), ES stores data as:
+
+Documents inside Indexes
+
+Each Index ≈ a Database Table
+Each Document ≈ a Row (JSON object)
+Each Field ≈ a Column
+
+🧠 2. Storage Flow — Step by Step
+
+Let’s say you index this JSON:
+
+{
+  "id": 1,
+  "title": "Elasticsearch stores data efficiently",
+  "tags": ["search", "database", "lucene"]
+}
+
+
+Here’s what happens inside:
+
+🔹 Step 1: JSON → Lucene Document
+
+Elasticsearch converts this JSON into multiple Lucene fields.
+
+Field	Value	Type
+id	1	numeric
+title	"Elasticsearch stores data efficiently"	text
+tags	["search", "database", "lucene"]	keyword
+🔹 Step 2: Tokenization (for text fields)
+
+Lucene analyzes text (tokenizes, lowercases, removes stop words).
+
+For example, title → tokens:
+
+["elasticsearch", "store", "data", "efficiently"]
+
+
+These tokens are then indexed using inverted index.
+
+🔹 Step 3: Inverted Index Structure
+
+👉 Think of it as a word → list of documents mapping.
+
+Term	Document IDs
+"elasticsearch"	[1]
+"store"	[1]
+"data"	[1]
+"efficiently"	[1]
+"database"	[1]
+"search"	[1]
+"lucene"	[1]
+
+So searching for "data" instantly finds document 1 — no scanning needed!
+
+🔹 Step 4: Columnar Storage (Doc Values)
+
+For fields like id, price, or date — ES stores doc values.
+
+Doc values = column-oriented storage (like columnar databases).
+
+Purpose:
+
+Fast sorting, aggregations, group-by queries.
+
+Example:
+
+id: [1, 2, 3, 4]
+price: [10, 12, 15, 20]
+
+
+This is column-based (efficient for aggregations).
+
+🔹 Step 5: Segments
+
+Lucene writes data in immutable segments (like mini indexes).
+
+Each index shard = multiple segments.
+
+When new documents come:
+
+They are written to new segments in memory
+
+Periodically flushed to disk
+
+Old segments get merged for optimization (merge policy)
+
+So:
+
+Index → Shards → Segments → Lucene inverted indexes
+
+🔹 Step 6: Storage on Disk
+
+Each segment has:
+
+.tim files → term dictionary (words)
+
+.doc files → postings list (doc IDs)
+
+.fdt → stored fields (original JSON)
+
+.dvd / .dvm → doc values
+
+.fdx → field index metadata
+
+All compressed and indexed.
+
+🧮 Example Search Flow
+
+Query: "data"
+
+Analyzer tokenizes query → "data"
+
+Lucene looks up "data" in term dictionary
+
+Finds posting list → doc IDs [1]
+
+Retrieves original stored fields from segment files
+
+Ranks results using TF-IDF / BM25 scoring
+
+💾 Storage Summary
+Type of Field	Stored As	Purpose
+Text	Inverted Index	Full-text search
+Keyword	Hash + Doc Values	Exact match & aggregations
+Numeric / Date	Doc Values (columnar)	Sorting & aggregations
+Original JSON	Stored Fields	Return original document
+🚀 Optimization Notes
+
+Lucene segments are immutable → no in-place updates → new segment gets created.
+
+Deletes are logical (mark as deleted).
+
+Merging combines small segments into larger ones for efficiency.
+
+Compression and columnar layout make queries extremely fast.
+
+🧱 In Short:
+
+Elasticsearch stores values in 2 main ways:
+
+Inverted Index → for fast text search
+
+Doc Values (columnar) → for sorting & aggregations

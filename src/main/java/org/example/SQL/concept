@@ -1,0 +1,17 @@
+
+
+2nd highest salary::
+
+select MAX(salary)
+from employee
+where salary < ( select MAX(salary)
+                 from employee
+                 where salary )
+
+
+Duplicate Records in table::
+
+select name, COUNT(*)
+from Employee
+GROUP BY name
+where COUNT(*)>1
